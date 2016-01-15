@@ -9,9 +9,7 @@ module Wisepdf
       attr_accessor :wkhtmltopdf
 
       def wkhtmltopdf
-        return @wkhtmltopdf if @wkhtmltopdf.present?
-
-        if @wkhtmltopdf.nil? && !self.windows?
+        if !self.windows?
           @wkhtmltopdf = (defined?(Bundler) ? `bundle exec which wkhtmltopdf` : `which wkhtmltopdf`).chomp
         end
         return @wkhtmltopdf
